@@ -32,4 +32,12 @@ public class FuncionarioController {
         model.addAttribute("total", total);
         return "painel";
     }
+    
+    @GetMapping("/funcionarios/tecnologia")
+    public String detalhesFuncionario(Model model) {
+        List<FuncionarioBean> lista = d.funcionariosTecnologia();
+        model.addAttribute("lista", lista);
+        return "funcionarios";
+    }
+    
 }

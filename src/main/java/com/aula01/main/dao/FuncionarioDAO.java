@@ -67,7 +67,7 @@ public class FuncionarioDAO {
         return count;
     }
     
-    public List<FuncionarioBean> detalhesFuncionario() {
+    public List<FuncionarioBean> funcionariosTecnologia() {
         List<FuncionarioBean> lista = new ArrayList();
         try{
             Connection conn = Conexao.conectar();
@@ -75,13 +75,13 @@ public class FuncionarioDAO {
             PreparedStatement stmt = null;
             ResultSet rs = null;
             
-            stmt = conn.prepareStatement("SELECT * FROM funcionarios WHERE departamento = Tecnologia");
+            stmt = conn.prepareStatement("SELECT * FROM funcionarios WHERE departamento = 'Tecnologia'");
             
             rs = stmt.executeQuery();
             
             while(rs.next()){
                 FuncionarioBean funcionario = new FuncionarioBean();
-                funcionario.setId(rs.getInt(""));
+                funcionario.setId(rs.getInt("id"));
                 funcionario.setNome(rs.getString("nome"));
                 funcionario.setCargo(rs.getString("cargo"));
                 funcionario.setDepartamento(rs.getString("departamento"));
