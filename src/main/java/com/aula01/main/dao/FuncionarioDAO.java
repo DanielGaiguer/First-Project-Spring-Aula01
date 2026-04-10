@@ -66,4 +66,35 @@ public class FuncionarioDAO {
         
         return count;
     }
+    
+    public List<FuncionarioBean> detalhesFuncionario() {
+        List<FuncionarioBean> lista = new ArrayList();
+        try{
+            Connection conn = Conexao.conectar();
+            
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            
+            stmt = conn.prepareStatement("SELECT * FROM funcionarios WHERE departamento = Tecnologia");
+            
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                FuncionarioBean funcionario = new FuncionarioBean();
+                funcionario.setId(rs.getInt(""));
+                funcionario.setNome(rs.getString("nome"));
+                funcionario.setCargo(rs.getString("cargo"));
+                funcionario.setDepartamento(rs.getString("departamento"));
+                funcionario.setEmail(rs.getString("email"));
+                funcionario.setDataContratacao(rs.getDate("data_contratacao"));
+                
+                lista.add(funcionario);
+            }
+            
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return lista;
+    }
 }
