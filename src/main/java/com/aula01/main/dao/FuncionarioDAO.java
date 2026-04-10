@@ -45,4 +45,26 @@ public class FuncionarioDAO {
         
         return lista;
     }
+    
+    public int funcionariosCount() {
+        int count = 0;
+        try{
+            Connection conn = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            
+            stmt = conn.prepareStatement("SELECT COUNT(*) FROM funcionarios");
+            rs = stmt.executeQuery();
+            
+            rs.next();
+            
+           count = rs.getInt("count(*)");
+           
+            
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return count;
+    }
 }
