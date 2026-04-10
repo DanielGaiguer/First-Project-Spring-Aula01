@@ -25,4 +25,11 @@ public class FuncionarioController {
         model.addAttribute("lista", lista);
         return "funcionarios";
     }
+    
+    @GetMapping("painel")
+    public String painel(Model model) {
+        int total  = d.funcionariosCount();
+        model.addAttribute("total", total);
+        return "painel";
+    }
 }

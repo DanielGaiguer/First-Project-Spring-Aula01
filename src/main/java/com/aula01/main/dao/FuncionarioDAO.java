@@ -53,14 +53,13 @@ public class FuncionarioDAO {
             PreparedStatement stmt = null;
             ResultSet rs = null;
             
-            stmt = conn.prepareStatement("SELECT COUNT(*) FROM funcionarios");
+            stmt = conn.prepareStatement("SELECT COUNT(*) as total FROM funcionarios");
             rs = stmt.executeQuery();
             
-            rs.next();
-            
-           count = rs.getInt("count(*)");
-           
-            
+            if(rs.next()){
+                count = rs.getInt("total");
+
+            }
         }catch(SQLException e){
             e.printStackTrace();
         }
